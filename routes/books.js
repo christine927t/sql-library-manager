@@ -37,7 +37,7 @@ router.post('/:id/edit', (req, res) => {
             await book.update(req.body)
             res.redirect("/books/" + book.id)
         } else {
-        
+            res.sendStatus(404);
         }
     }
 })
