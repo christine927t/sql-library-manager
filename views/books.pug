@@ -1,5 +1,21 @@
-html
-    head
-        title= title
-    body
-        h1= message
+extends layout.pug
+
+block content
+    h1 Book Details
+        p
+            a(href='/new_book') Create New Book
+        table
+            thead
+                tr
+                    th
+                    th
+                    th
+                    th
+            tbody
+                tr
+                    each book in books                
+                        td
+                            a(href=`/books/${book.title}`)
+                        td= books.author 
+                        td= books.genre
+                        td= books.year

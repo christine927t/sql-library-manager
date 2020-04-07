@@ -8,17 +8,17 @@ const books = require('./routes/books')
 
 const app = express();
 app.get('/', (req, res) => {
-    res.render("/books", { title: 'Hey', message: 'Hello there!' })
-    // res.render("index", { title: 'Hey', message: 'Hello there!' })
+    res.render("books")
+    // res.render("index", { title: 'Hey', message: 'Goodbye!' })
 
     // res.send("Hi");
 })
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'pug');
 
 // app.use('/', routes);
-app.use('/books', books);
+app.use('books', books);
 
 app.listen(3000);
 
