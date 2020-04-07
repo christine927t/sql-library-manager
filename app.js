@@ -1,45 +1,32 @@
-const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'library.db',
-    logging: false
-});
+const db = require('./db');
+const { Book } = db.models;
+const path = require('path');
+const express = require('express')
+// const routes = require('./routes/index')
+const books = require('./routes/books')
 
-// Book model
-class Book extends Sequelize.Model { }
-Book.init({
-    title: {
-        type: Sequelize.STRING,
-        validate: {
-            notEmpty: {
-                msg: '"Title" cannot be empty'
-            }
-        }
-    },
-    author: {
-        type: Sequelize.STRING,
-        validate: {
-            notEmpty: {
-                msg: '"Author" cannot be empty'
-            }
-        }
-    },
-    genre: {
-        type: Sequelize.STRING
-    },
-    year: {
-        type: Sequelize.INTEGER
-    }
-}, { sequelize });
+const app = express();
+app.get('/', (req, res) => {
+    res.render("/books", { title: 'Hey', message: 'Hello there!' })
+    // res.render("index", { title: 'Hey', message: 'Hello there!' })
+
+    // res.send("Hi");
+})
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+// app.use('/', routes);
+app.use('/books', books);
+
+app.listen(3000);
 
 (async () => {
     // sync "Books" table
-    await Book.sync({ force: true });
-
+    await db.sequelize.sync({ force: true });
     try {
-
-        //new instance of the Book class
+        //new instances of the Book class
         const bookInstances = await Promise.all([
             Book.create({
                 title: "Little Fires Everywhere",
