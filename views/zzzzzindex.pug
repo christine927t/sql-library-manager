@@ -4,20 +4,19 @@ html(lang='en')
         meta(charset='utf-8')
         meta(http-equiv='x-ua-compatible', content='ie=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet', href='/static/css/foundation.css')
-        link(rel='stylesheet', href='/public/style.css')
+        link(rel='stylesheet', href='/static/stylesheets/style.css')
         title= "Books"
     body
         h1 Book Details
-        p
-            a(href='/new_book') Create New Book
+        p.button
+            a.button(href='/new_book') Create New Book
         table
             thead
                 tr
-                    th
-                    th
-                    th
-                    th
+                    th Title
+                    th Author
+                    th Genre
+                    th Year
             tbody
                 tr
                     td

@@ -3,22 +3,30 @@ const db = require('./db');
 const { Book } = db.models;
 const path = require('path');
 const express = require('express')
-// const routes = require('./routes/index')
+const app = express()
+
+const routes = require('./routes/index')
 const books = require('./routes/books')
 
-const app = express();
-app.get('/', (req, res) => {
-    res.render("books")
-    // res.render("index", { title: 'Hey', message: 'Goodbye!' })
 
-    // res.send("Hi");
-})
+// app.get('/', (req, res) => {
+//     res.render("books")
+//     // res.render("index", { title: 'Hey', message: 'Goodbye!' })
 
+//     // res.send("Hi");
+// })
+
+
+/////MIDDLEWARE////
+//sets view engine
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'pug');
 
-// app.use('/', routes);
-app.use('books', books);
+//serves static files in public folder
+app.use('/static', express.static('public'));
+
+app.use('/', routes);
+app.use('/books', books);
 
 app.listen(3000);
 
