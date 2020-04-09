@@ -21,8 +21,10 @@
     "nodemon": "^1.19.2",
     "pug": "^2.0.4",
     "sequelize": "^5.18.4",
-    "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.0",
     "acorn": ">=5.7.4"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
   }
 }
