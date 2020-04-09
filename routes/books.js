@@ -22,18 +22,18 @@ function asyncHandler(cb) {
 // post /books/:id/delete - Deletes a book.
 
 // GET books - show full list of books
-router.get('/books', asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
     res.render("index", { books, title: books.title })
 }));
 
 // GET books/new - create new book form
-router.get('/books/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render("new-book", { book: {}, title: "New Book" })
 });
 
 // POST books/new - posts new book to database
-router.post('/books/new', asyncHandler(async (req, res) => {
+router.post('/new', asyncHandler(async (req, res) => {
     let book;
     try {
         book = await Book.create(req.body);
@@ -48,6 +48,16 @@ router.post('/books/new', asyncHandler(async (req, res) => {
         }
     }
 }))
+
+// GET books/:id - shows book detail form
+router.get("/:id", asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    if (book) {
+        res.render("update-book", { book, title: book.title })
+    } else {
+        res.sendStatus(404);
+    }
+}));
 
 // // GET books/:id/edit - edit book form
 // router.get("/:id/edit", (req, res) => {
@@ -74,15 +84,7 @@ router.post('/books/new', asyncHandler(async (req, res) => {
 //     }
 // })
 
-// GET books/:id - shows book detail form
-router.get("/books/:id", asyncHandler(async (req, res) => {
-    const book = await Book.findByPk(req.params.id);
-    if (book) {
-        res.render("update-book", { book, title: book.title })
-    } else {
-        res.sendStatus(404);
-    }
-}));
+
 
 
 // // POST books/:id/delete - deletes a book from list
