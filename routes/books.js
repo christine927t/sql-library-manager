@@ -8,15 +8,12 @@ function asyncHandler(cb) {
         try {
             await cb(req, res, next)
         } catch (error) {
-            res.status(500).next(error);
+            console.log(error)
+            res.render("error")
+            throw error;
         }
     }
 }
-
-
-
-// post /books/:id - Updates book info in the database.
-// post /books/:id/delete - Deletes a book.
 
 // GET books - show full list of books
 router.get('/', asyncHandler(async (req, res) => {
@@ -51,12 +48,11 @@ router.get("/:id", asyncHandler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
         res.render("update-book", { book, title: book.title })
-    } else {
-        res.sendStatus(404);
-        throw error;
+    } 
+    else {
+        res.render("error");
     }
 }));
-
 
 // POST books/:id - updates book info
 router.post('/:id/edit', asyncHandler(async (req, res) => {
@@ -80,16 +76,15 @@ router.post('/:id/edit', asyncHandler(async (req, res) => {
     }
 }))
 
-
-
-// // POST books/:id/delete - deletes a book from list
-// router.get("/:id/delete", (req, res) => {
-//     const book = await Book.findByPk(req.params.id)
-//     if (book) {
-//         res.render("books/delete")
-//     } else {
-//         res.sendStatus(404);
-//     }
-// })
+// POST books/:id/delete - deletes a book from list
+router.post("/:id/delete", asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    if (book) {
+        await book.destroy();
+        res.redirect("/books")
+    } else {
+        res.sendStatus(404);
+    }
+}))
 
 module.exports = router;

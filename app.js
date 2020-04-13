@@ -25,4 +25,19 @@ app.use('/static', express.static('public'));
 app.use('/', routes);
 app.use('/books', books);
 
+////404 error catch///
+app.use((req, res, next) => {
+    const err = new Error("Sorry, this page does not exist!");
+    err.status = 404;
+    next(err);
+});
+
+// /////ERROR HANDLER/////
+app.use((err, req, res, next) =>{
+    res.locals.error = err;
+    res.status(err.status || 500);
+    res.render('page-not-found');
+    console.log(`Error ${err.status} - ${err.message}`);
+});
+
 app.listen(3000);
