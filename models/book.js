@@ -32,9 +32,6 @@ module.exports = (sequelize) => {
         year: {
             type: Sequelize.INTEGER,
             validate: {
-                // notEmpty: {
-                //     msg: "Please enter a valid year (YYYY)"
-                // },
                 isNumeric: {
                     msg: "Please enter a numeric year (YYYY)"
                 },

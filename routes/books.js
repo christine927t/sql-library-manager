@@ -37,7 +37,7 @@ router.post('/new', asyncHandler(async (req, res) => {
             const errors = error.errors.map(err => err.message);
             console.error('Validation errors: ', errors);
             book = await Book.build(req.body);
-            res.render("new-book", { book, errors: error.errors, title: "New Book" })
+            res.render("form-error", { book, errors, title: "New Book"})
         } else {
             throw error;
         }
