@@ -24,7 +24,8 @@
     "nodemon": "^1.19.2",
     "pug": "^2.0.4",
     "sequelize": "^5.18.4",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "sequelize-cli": "^5.5.1"
