@@ -67,10 +67,12 @@ router.post('/:id/edit', asyncHandler(async (req, res) => {
             res.sendStatus(404);
         }
     } catch (error) {
-        if(error.name === "SequelizeValidationError"){
+        if (error.name === "SequelizeValidationError") {
+            const errors = error.errors.map(err => err.message);
+            console.error('Validation errors: ', errors);
             book = await Book.build(req.body);
             book.id = req.params.id;
-            res.render("update-book", { book, errors: error.errors, title: "Edit Book"})
+            res.render("update-error", { book, errors, title: "Edit Book"})
         } else {
             throw error;
         }
