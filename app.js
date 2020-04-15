@@ -1,6 +1,3 @@
-
-// const db = require('./db');
-// const { Book } = db.models;
 const path = require('path');
 const express = require('express');
 const app = express();

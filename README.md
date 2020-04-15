@@ -1,36 +1,27 @@
-# sql-library-manager
-node_modules/
+# **SQL Library Manager**
+## Live link: https://christine927t.github.io/sql-library-manager/
+## *by Christine Treacy*
+### Treehouse FSJS Techdegree Project 8
 
-Initialize Sequelize and create models
+#### Description/Features: 
+This is the first app I've built that taps into a database allowing for all CRUD operations to be performed. It displays a list of books and lets the user add new books, update the book information, or delete the book from the database all together. The SQL ORM Sequelize is used for all database interaction.
 
--book model with the following properties:
-    title - string
-    author - string
-    genre - string
-    year - integer
-validation
-    title and author can't be empty/null
+### To launch: 
+run npm install to install project dependencies
+run nodemon or npm start
+view on localhost:3000
 
--Server, middleware and routes
-    get /
-    get /books
-    get /books/new
-    post /books/new
-    get /books/:id
-    post /books/:id
-    post /books/:id/delete
+## Built With:
+**HTML**
 
-error handling middleware 
-404 not found page
+**CSS**
 
--build pug views
-    layout.pug
-    index.pug
-    new-book.pug
-    update-book.pug
-    error.pug
-    page-not-found.pug
+**JavaScript**
 
--required fields and forms
-    error message for empty fields
+**Sequelize**
 
+**Node.js**
+
+**Express**
+
+**Pug templates**
