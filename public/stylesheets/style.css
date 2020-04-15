@@ -7,14 +7,10 @@ body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 
 }
-  /* font-family: 'Cabin', sans-serif; */
-  /* font-family: 'Quicksand', sans-serif; */
-
 
 a {
   text-decoration: none;
   font-weight: bold;
-  transition: 0.4s;
   font: 22px 'IM Fell English', serif;
 }
 
@@ -42,12 +38,18 @@ input[type=submit] {
 }
 
 a.button:hover, input[type=submit]:hover {
-  /* background-color: #01b189; */
   background-color: gray;
 }
 
+.error {
+  color: rgb(236, 15, 15);
+  font: 25px 'IM Fell English', serif;
+}
+
 p {
+  color: #019875;
   margin: 20px auto;
+  font-size: 16px;
 }
 
 ul {
@@ -84,7 +86,7 @@ tr {
 }
 
 tr:nth-child(2n) {
-  background: #E7E7E7;
+  background: rgb(221, 194, 169);
 }
 
 td {
@@ -113,7 +115,3 @@ input[type=text] {
   width: 300px;
 }
 
-.error {
-  color: rgb(236, 15, 15);
-  font: 25px 'IM Fell English', serif;
-}
